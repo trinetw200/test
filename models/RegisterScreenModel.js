@@ -2,11 +2,11 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set } from "firebase/database";
 import { firebaseConfig } from '../untils/FirebaseConfig';
 
-export function  writeUserData(name, account, password, sex, phone) {
+export function  writeUserData(type, name, account, password, sex, phone) {
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
-  set(ref(db, 'users/' + account), {
+  set(ref(db, 'users/'+type+'/'+ account), {
     "name": name,
     "password": password,
     "sex" : sex,

@@ -4,16 +4,16 @@ import {writeUserData} from '../models/RegisterScreenModel';
 import { CheckBox } from '@rneui/themed';
 
 export default function APP({ navigation }) {
+  const [type, setType] = useState(0);
   const [username, setUsername] = useState('');
   const [account, setAccount] = useState('');
   const [password, setPassword] = useState('');
-  //const [sex, setSex] = useState('');
   const [phone, setPhone] = useState('');
   const [sex, setSex] = useState(0);
 
   function handleRegister() {
     // 處理註冊邏輯
-    writeUserData(username,account,password,sex,phone);
+    writeUserData(type,username,account,password,sex,phone);
     Alert.alert('', '註冊成功', [
       {text: '完成', onPress: () => navigation.navigate('LoginScreen')},
     ]);
@@ -26,26 +26,54 @@ export default function APP({ navigation }) {
       <Text></Text>
       <Text style={styles.title}>Register</Text>
       <View style={styles.form}>
-        <TextInput
-          style={styles.input}
-          placeholder="輸入姓名"
-          value={username}
-          onChangeText={(text) => setUsername(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="輸入帳號"
-          value={account}
-          onChangeText={(text) => setAccount(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="輸入密碼"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
         <View style={styles.checkBoxContainer}>
+          <Text h2>身分：</Text>
+          <CheckBox
+              title="房客"
+              checked={type === 0}
+              onPress={() => setType(0)}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+          />
+          <CheckBox
+              title="房東"
+              checked={type === 1}
+              onPress={() => setType(1)}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+          />
+        </View>
+        
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>姓名：</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="輸入姓名"
+            value={username}
+            onChangeText={(text) => setUsername(text)}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>帳號：</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="輸入帳號"
+            value={account}
+            onChangeText={(text) => setAccount(text)}
+          />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>密碼：</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="輸入密碼"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+        </View>
+        <View style={styles.checkBoxContainer}>
+        <Text h2>性別：</Text>
          <CheckBox
            title="女"
            checked={sex === 0}
@@ -60,13 +88,16 @@ export default function APP({ navigation }) {
            checkedIcon="dot-circle-o"
            uncheckedIcon="circle-o"
          />
-         </View>
-        <TextInput
-          style={styles.input}
-          placeholder="輸入電話"
-          value={phone}
-          onChangeText={(text) => setPhone(text)}
-        />
+        </View>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>電話：</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="輸入電話"
+            value={phone}
+            onChangeText={(text) => setPhone(text)}
+          />
+        </View>
         <TouchableOpacity style={styles.button} onPress={handleRegister}>
           <Text style={styles.buttonText}>註冊</Text>
         </TouchableOpacity>
@@ -97,8 +128,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 4,
-    padding: 8,
-    marginBottom: 16,
+    padding: 5,
+    flex: 1,
+    width: 'auto',
   },
   button: {
     margin: 20,
@@ -118,5 +150,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  inputLabel: {
+    fontSize: 14,
+    marginRight: 8,
   },
 });

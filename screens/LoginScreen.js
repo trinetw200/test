@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import {login} from '../models/LoginScreenModel';
+import { CheckBox } from '@rneui/themed';
 
 export default function APP({ navigation }) {
+  const [type, setType] = useState(0);
   const [account, setAccount] = useState(''); //帳號
   const [password, setPassword] = useState(''); //密碼
 
   const handleLogin = () => {
     // TODO: 實現登入邏輯
-    login(account,password);
+    login(account,password,type);
   };
 
   return (
@@ -18,6 +20,23 @@ export default function APP({ navigation }) {
       <Text></Text>
       <Text style={styles.title}>Login</Text>
       <View style={styles.form}>
+      <View style={styles.checkBoxContainer}>
+          <Text h2>身分：</Text>
+          <CheckBox
+              title="房客"
+              checked={type === 0}
+              onPress={() => setType(0)}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+          />
+          <CheckBox
+              title="房東"
+              checked={type === 1}
+              onPress={() => setType(1)}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+          />
+        </View>
         <TextInput
           style={styles.input}
           placeholder="帳號"
@@ -80,5 +99,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  checkBoxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 16,
   },
 });
