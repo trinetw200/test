@@ -9,7 +9,6 @@ import L_HouseManagement from './screens/Landlord/L_HouseManagement';
 const Stack = createNativeStackNavigator();
 
 function App() {
-  alert('a');
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="L_HouseManagement">

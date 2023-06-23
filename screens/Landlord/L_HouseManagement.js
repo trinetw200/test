@@ -90,7 +90,7 @@ export default function L_HouseManagement({ navigation }) {
           />
         </View>
 
-        <Text h2>屋況介紹</Text>
+        <Text>屋況介紹</Text>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>租期：</Text>
           <TextInput
@@ -110,7 +110,7 @@ export default function L_HouseManagement({ navigation }) {
           />
         </View>
         <View style={styles.checkBoxContainer}>
-          <Text h2>寵物：</Text>
+          <Text>寵物：</Text>
           <CheckBox
               title="可養"
               checked={pet === 0}
@@ -127,7 +127,7 @@ export default function L_HouseManagement({ navigation }) {
           />
         </View>
         <View style={styles.checkBoxContainer}>
-          <Text h2>開伙：</Text>
+          <Text>開伙：</Text>
           <CheckBox
               title="可開"
               checked={cook === 0}
@@ -196,7 +196,7 @@ export default function L_HouseManagement({ navigation }) {
         </View>
 
 
-        <Text >房東聯絡</Text> //資料庫帶入
+        <Text >房東聯絡</Text>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>姓名：</Text>
           {/* <TextInput
