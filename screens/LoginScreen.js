@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import {login} from '../models/LoginScreenModel';
 import { CheckBox } from '@rneui/themed';
 
@@ -10,7 +10,17 @@ export default function APP({ navigation }) {
 
   const handleLogin = () => {
     // TODO: 實現登入邏輯
-    login(account,password,type);
+    const successCallBack = (type) =>{
+      if (type === 0) {
+
+      } else {
+        navigation.navigate('L_HouseManagement');
+      }
+    }
+    const failCallBack = () =>{
+      Alert.alert('', '登入失敗');
+    }
+    login(account,password,type,successCallBack,failCallBack);
   };
 
   return (

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import {writeUserData} from '../models/RegisterScreenModel';
 import { CheckBox } from '@rneui/themed';
+import { Await } from 'react-router-dom';
 
 export default function APP({ navigation }) {
   const [type, setType] = useState(0);
@@ -11,12 +12,17 @@ export default function APP({ navigation }) {
   const [phone, setPhone] = useState('');
   const [sex, setSex] = useState(0);
 
-  function handleRegister() {
+  function  handleRegister() {
     // 處理註冊邏輯
-    writeUserData(type,username,account,password,sex,phone);
-    Alert.alert('', '註冊成功', [
-      {text: '完成', onPress: () => navigation.navigate('LoginScreen')},
-    ]);
+    const successCallBack = () =>{
+      Alert.alert('', '註冊成功', [
+        {text: '完成', onPress: () => navigation.navigate('LoginScreen')},
+      ]);
+    }
+    const failCallBack = () =>{
+      Alert.alert('', '註冊失敗');
+    }
+    writeUserData(type,username,account,password,sex,phone,successCallBack,failCallBack);
   }
 
   return (

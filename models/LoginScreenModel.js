@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, onValue } from "firebase/database";
 import { firebaseConfig } from '../untils/FirebaseConfig';
 
-export function login(account,password,type) {
+export function login(account,password,type,successCallBack,failCallBack) {
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     // Initialize Realtime Database and get a reference to the service
@@ -10,9 +10,9 @@ export function login(account,password,type) {
     const dbRef = ref(database, 'users/'+type+'/'+account+'/password');
     onValue(dbRef, (snapshot) => {
         if (snapshot.val() == password) {
-            alert("登入成功");
+            successCallBack(type);
         } else {
-            alert("登入失敗");
+            failCallBack();
         }
     });
 }
