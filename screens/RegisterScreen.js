@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import {writeUserData} from '../models/RegisterScreenModel';
 import { CheckBox } from '@rneui/themed';
-import { Await } from 'react-router-dom';
 
 export default function APP({ navigation }) {
   const [type, setType] = useState(0);
