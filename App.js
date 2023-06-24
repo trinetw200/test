@@ -9,7 +9,9 @@ import ImagePickerTools from './untils/ImagePickerTools';
 
 const Stack = createNativeStackNavigator();
 
-function App(21212321) {
+
+function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginScreen">
