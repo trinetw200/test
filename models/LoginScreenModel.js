@@ -7,10 +7,10 @@ export function login(account,password,type,successCallBack,failCallBack) {
     const app = initializeApp(firebaseConfig);
     // Initialize Realtime Database and get a reference to the service
     const database = getDatabase(app);
-    const dbRef = ref(database, 'users/'+type+'/'+account+'/password');
+    const dbRef = ref(database, 'users/'+type+'/'+account);
     onValue(dbRef, (snapshot) => {
-        if (snapshot.val() == password) {
-            successCallBack(type);
+        if (snapshot.val() != null && snapshot.val().password == password) {
+            successCallBack(account,snapshot.val().name,snapshot.val().phone,type);
         } else {
             failCallBack();
         }

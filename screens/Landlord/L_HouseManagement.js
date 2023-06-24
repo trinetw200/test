@@ -1,14 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import {WriteHouseData} from '../../models/L_HouseManagementModel';
 import { CheckBox } from '@rneui/themed';
-
+import { GetUserName,GetUserAccount,GetUserPhone } from '../../untils/UserInfo';
 
 const Separator = () => {
   return <View style={styles.separator} />;
 };
 
 export default function L_HouseManagement({ navigation }) {
+
+  useEffect(() => {
+    GetUserName().then((val) => {
+      setLandlord_name(val);
+    });
+    GetUserPhone().then((val) => {
+      setLandlord_phone(val);
+    });
+    GetUserAccount().then((val) => {
+      setAccount(val);
+    });
+
+
+  }, []);
+
+  const [account, setAccount] = useState('');
   const [roomname, setRoomname] = useState('');
   const [price, setPrice] = useState('');
   const [address, setAddress] = useState('');
@@ -34,10 +50,15 @@ export default function L_HouseManagement({ navigation }) {
 
   function handleRegister() {
     // 處理註冊邏輯
-    WriteHouseData(roomname,price,address,area,pattern,floor,lease_term,management_fee,pet,cook,device);
-    Alert.alert('', '新增成功', [
-      {text: '完成', onPress: () => navigation.navigate('LoginScreen')},
-    ]);
+    const successCallBack = (account,name,phone,type) =>{
+      Alert.alert('', '新增成功', [
+        {text: '完成', onPress: () => navigation.navigate('LoginScreen')},
+      ]);
+    }
+    const failCallBack = () =>{
+      Alert.alert('', '新增失敗');
+    }
+    WriteHouseData(roomname,price,address,area,pattern,floor,lease_term,management_fee,pet,cook,device,account,landlord_name,landlord_phone,successCallBack,failCallBack);
   }
 
   return (
@@ -235,21 +256,19 @@ export default function L_HouseManagement({ navigation }) {
         <Text></Text>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>姓名：　</Text>
-            {/* <TextInput
+            <TextInput
               style={styles.input}
-              placeholder="請輸入租期"
-              value={lease_term}
-              onChangeText={(text) => setLease_term(text)}
-            /> */}
+              value={landlord_name}
+              onChangeText={(text) => setLandlord_name(text)}
+            />
         </View>
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>電話：　</Text>
-            {/* <TextInput
+            <TextInput
               style={styles.input}
-              placeholder="請輸入租期"
-              value={lease_term}
-              onChangeText={(text) => setLease_term(text)}
-            /> */}
+              value={landlord_phone}
+              onChangeText={(text) => setLandlord_phone(text)}
+            />
         </View>
 
         <TouchableOpacity style={styles.button} onPress={handleRegister}>

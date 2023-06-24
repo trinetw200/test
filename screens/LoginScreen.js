@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
 import {login} from '../models/LoginScreenModel';
 import { CheckBox } from '@rneui/themed';
+import { SaveUserInfo } from '../untils/UserInfo';
+
 
 export default function LoginScreen({ navigation }) {
   const [type, setType] = useState(0);
@@ -10,12 +12,14 @@ export default function LoginScreen({ navigation }) {
 
   const handleLogin = () => {
     // TODO: 實現登入邏輯
-    const successCallBack = (type) =>{
-      if (type === 0) {
+    const successCallBack = (account,name,phone,type) =>{
+      SaveUserInfo(account,name,phone,type).then(() => {
+        if (type === 0) {
 
-      } else {
-        navigation.navigate('L_HouseManagement');
-      }
+        } else {
+          navigation.navigate('L_HouseManagement');
+        }
+      });
     }
     const failCallBack = () =>{
       Alert.alert('', '登入失敗');
