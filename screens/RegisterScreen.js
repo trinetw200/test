@@ -4,7 +4,7 @@ import {writeUserData} from '../models/RegisterScreenModel';
 import { CheckBox } from '@rneui/themed';
 import { Await } from 'react-router-dom';
 
-export default function APP({ navigation }) {
+export default function RegisterScreen({ navigation }) {
   const [type, setType] = useState(0);
   const [username, setUsername] = useState('');
   const [account, setAccount] = useState('');
