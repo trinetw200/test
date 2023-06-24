@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } fro
 import {login} from '../models/LoginScreenModel';
 import { CheckBox } from '@rneui/themed';
 
-export default function APP({ navigation }) {
+export default function LoginScreen({ navigation }) {
   const [type, setType] = useState(0);
   const [account, setAccount] = useState(''); //帳號
   const [password, setPassword] = useState(''); //密碼
