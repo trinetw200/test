@@ -24,7 +24,6 @@ export default function ImagePickerExample() {
     }
   };
 
-  //拍照上傳目前有問題勿用
   const takePhoto = async () => {
 
     let permiss = await ImagePicker.getCameraPermissionsAsync();
@@ -49,6 +48,7 @@ export default function ImagePickerExample() {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Button title="Pick an image from camera roll" onPress={pickImage} />
+      <Button title="takePhotol" onPress={takePhoto} />
       {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
     </View>
   );

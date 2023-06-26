@@ -26,7 +26,7 @@ export async function UploadImageAsync(uri) {
   
     // We're done with the blob, close and release it
     blob.close();
-  Ays
+
     return await getDownloadURL(fileRef);
   }
 
