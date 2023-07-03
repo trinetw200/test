@@ -38,14 +38,13 @@ export default function L_HouseManagement({ navigation }) {
   const [landlord_name, setLandlord_name] = useState(''); //房東聯絡
   const [landlord_phone, setLandlord_phone] = useState(''); //房東聯絡
   const [device, setDevice] = useState({
-    fridge: true,
+    fridge: false,
     airConditioner: false,
     Wardrobe: false,
     tables_and_chairs: false,
     TV: false,
     WIFI: false,
     washing_machine: false,
-    fridge: false,
   });
 
   function handleRegister() {
@@ -239,13 +238,6 @@ export default function L_HouseManagement({ navigation }) {
             <CheckBox
               checked={device.washing_machine}
               onPress={(value) => setDevice({ ...device, washing_machine: !device.washing_machine })}
-            />
-          </View>
-          <View style={styles.checkBoxItem}>
-          <Image source={require('../../assets/edit.png')} style={styles.icon} />
-            <CheckBox
-              checked={device.fridge}
-              onPress={(value) => setDevice({ ...device, fridge: !device.fridge })}
             />
           </View>
         </View>
