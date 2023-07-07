@@ -31,17 +31,17 @@ export default function RegisterScreen({ navigation }) {
       <Text></Text>
       <Text style={styles.title}>Register</Text>
       <View style={styles.form}>
+        <Text style={styles.checkbox_inputLabel}>身分</Text>
         <View style={styles.checkBoxContainer}>
-          <Text h2>身分：</Text>
           <CheckBox
-              title="房客"
+              title="我是房客"
               checked={type === 0}
               onPress={() => setType(0)}
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
           />
           <CheckBox
-              title="房東"
+              title="我是房東"
               checked={type === 1}
               onPress={() => setType(1)}
               checkedIcon="dot-circle-o"
@@ -77,8 +77,9 @@ export default function RegisterScreen({ navigation }) {
             onChangeText={(text) => setPassword(text)}
           />
         </View>
+        <Text style={styles.checkbox_inputLabel}>性別</Text>
         <View style={styles.checkBoxContainer}>
-        <Text h2>性別：</Text>
+        
          <CheckBox
            title="女"
            checked={sex === 0}
@@ -154,6 +155,7 @@ const styles = StyleSheet.create({
   checkBoxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 16,
   },
   inputContainer: {
@@ -164,5 +166,10 @@ const styles = StyleSheet.create({
   inputLabel: {
     fontSize: 14,
     marginRight: 8,
+  },
+  checkbox_inputLabel: {
+    fontSize: 16,
+    marginRight: 8,
+    textAlign: 'center',
   },
 });

@@ -29,22 +29,22 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>RentEase</Text>
       <Image source={require('../assets/home.png')} style={{width: 100, height: 100}} />
       <Text></Text>
       <Text></Text>
       <Text style={styles.title}>Login</Text>
       <View style={styles.form}>
       <View style={styles.checkBoxContainer}>
-          <Text h2>身分：</Text>
           <CheckBox
-              title="房客"
+              title="我是房客"
               checked={type === 0}
               onPress={() => setType(0)}
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
           />
           <CheckBox
-              title="房東"
+              title="我是房東"
               checked={type === 1}
               onPress={() => setType(1)}
               checkedIcon="dot-circle-o"
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
   checkBoxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     marginBottom: 16,
   },
 });
