@@ -30,7 +30,7 @@ export default function LoginScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>RentEase</Text>
-      <Image source={require('../assets/home.png')} style={{width: 100, height: 100}} />
+      <Image source={require('../assets/LOGO-example.jpg')} style={{width: 300, height: 300}} />
       <Text></Text>
       <Text></Text>
       <Text style={styles.title}>Login</Text>
