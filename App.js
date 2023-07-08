@@ -6,6 +6,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import L_HouseManagement_Insert from './screens/Landlord/L_HouseManagement/L_HouseManagement_Insert';
 import ImagePickerTools from './untils/ImagePickerTools';
+import Doris from './screens/Doris';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,11 +15,12 @@ function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Navigator initialRouteName="ImagePickerTools">
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
         <Stack.Screen name="L_HouseManagement_Insert" component={L_HouseManagement_Insert} />
         <Stack.Screen name="ImagePickerTools" component={ImagePickerTools} />
+        <Stack.Screen name="Doris" component={Doris} />
       </Stack.Navigator>
     </NavigationContainer>
   );
