@@ -81,10 +81,10 @@ export default function ImagePickerExample() {
       </Swiper> */}
     {images.length != 0 ? 
       <Swiper style={styles.wrapper} showsButtons loop={true}>
-      {images.length != 0 && images.map((image,index) => 
+      {images.length != 0 && images.map((image) => 
         
-        <View  style={styles.slide1}>
-          <Image key={index} source={{ uri: image }} style={{width: '100%', height: '100%'}} />
+        <View key={image} style={styles.slide1}>
+          <Image key={image} source={{ uri: image }} style={{width: '100%', height: '100%'}} />
         </View>
         
       )}
