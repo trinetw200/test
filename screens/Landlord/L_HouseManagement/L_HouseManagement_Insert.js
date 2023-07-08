@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
-import {WriteHouseData} from '../../models/L_HouseManagementModel';
+import {WriteHouseData} from '../../../models/L_HouseManagementModel';
 import { CheckBox } from '@rneui/themed';
-import { GetUserName,GetUserAccount,GetUserPhone } from '../../untils/UserInfo';
+import { GetUserName,GetUserAccount,GetUserPhone } from '../../../untils/UserInfo';
 
 const Separator = () => {
   return <View style={styles.separator} />;
@@ -38,6 +38,7 @@ export default function L_HouseManagement({ navigation }) {
   const [landlord_name, setLandlord_name] = useState(''); //房東聯絡
   const [landlord_phone, setLandlord_phone] = useState(''); //房東聯絡
   const [device, setDevice] = useState({
+    bed: false,
     fridge: false,
     airConditioner: false,
     Wardrobe: false,
@@ -67,7 +68,7 @@ export default function L_HouseManagement({ navigation }) {
         <Text></Text>
         <Text style={styles.title}>新增</Text>
         <View style={styles.form}>
-        <View style={styles.inputContainer}>
+          <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>房間名稱：　</Text>
             <TextInput
               style={styles.input}
@@ -75,7 +76,7 @@ export default function L_HouseManagement({ navigation }) {
               value={roomname}
               onChangeText={(text) => setRoomname(text)}
             />
-            </View>
+          </View>
 
           <View style={styles.inputContainer}>
             <Text style={styles.inputLabel}>金額：　</Text>
@@ -192,52 +193,59 @@ export default function L_HouseManagement({ navigation }) {
         <Text></Text>
         <View style={styles.checkBoxContainer}>
           <View style={styles.checkBoxItem}>
-          <Image source={require('../../assets/edit.png')} style={styles.icon} />
+            <Image source={require('../../../assets/bed.png')} style={styles.icon} />
             <CheckBox
               checked={device.bed}
-              onPress={(value) => setDevice({ ...device, bed: !device.bed })}
+              onPress={() => setDevice({ ...device, bed: !device.bed })}
             />
           </View>
           <View style={styles.checkBoxItem}>
-          <Image source={require('../../assets/edit.png')} style={styles.icon} />
+            <Image source={require('../../../assets/fridge.png')} style={styles.icon} />
+            <CheckBox
+              checked={device.fridge}
+              onPress={() => setDevice({ ...device, fridge: !device.fridge })}
+            />
+          </View>
+          <View style={styles.checkBoxItem}>
+            <Image source={require('../../../assets/air-conditioner.png')} style={styles.icon} />
             <CheckBox
               checked={device.airConditioner}
-              onPress={(value) => setDevice({ ...device, airConditioner: !device.airConditioner })}
+              onPress={() => setDevice({ ...device, airConditioner: !device.airConditioner })}
             />
           </View>
           <View style={styles.checkBoxItem}>
-          <Image source={require('../../assets/edit.png')} style={styles.icon} />
+            <Image source={require('../../../assets/wardrobe.png')} style={styles.icon} />
             <CheckBox
               checked={device.Wardrobe}
-              onPress={(value) => setDevice({ ...device, Wardrobe: !device.Wardrobe })}
+              onPress={() => setDevice({ ...device, Wardrobe: !device.Wardrobe })}
             />
           </View>
           <View style={styles.checkBoxItem}>
-          <Image source={require('../../assets/edit.png')} style={styles.icon} />
+            <Image source={require('../../../assets/tables_and_chairs.png')} style={styles.icon} />
             <CheckBox
               checked={device.tables_and_chairs}
-              onPress={(value) => setDevice({ ...device, tables_and_chairs: !device.tables_and_chairs })}
+              onPress={() => setDevice({ ...device, tables_and_chairs: !device.tables_and_chairs })}
             />
           </View>
           <View style={styles.checkBoxItem}>
-          <Image source={require('../../assets/edit.png')} style={styles.icon} />
+            <Image source={require('../../../assets/television.png')} style={styles.icon} />
             <CheckBox
               checked={device.TV}
-              onPress={(value) => setDevice({ ...device, TV: !device.TV })}
+              onPress={() => setDevice({ ...device, TV: !device.TV })}
             />
           </View>
           <View style={styles.checkBoxItem}>
-          <Image source={require('../../assets/edit.png')} style={styles.icon} />
+            <Image source={require('../../../assets/wifi.png')} style={styles.icon} />
             <CheckBox
               checked={device.WIFI}
-              onPress={(value) => setDevice({ ...device, WIFI: !device.WIFI })}
+              onPress={() => setDevice({ ...device, WIFI: !device.WIFI })}
             />
           </View>
           <View style={styles.checkBoxItem}>
-          <Image source={require('../../assets/edit.png')} style={styles.icon} />
+            <Image source={require('../../../assets/washing-machine.png')} style={styles.icon} />
             <CheckBox
               checked={device.washing_machine}
-              onPress={(value) => setDevice({ ...device, washing_machine: !device.washing_machine })}
+              onPress={() => setDevice({ ...device, washing_machine: !device.washing_machine })}
             />
           </View>
         </View>
