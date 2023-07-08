@@ -21,9 +21,19 @@ export async function UploadImageAsync(uri) {
   
     const app = initializeApp(firebaseConfig);
     
-    const fileRef = ref(getStorage(app), 'images/account/' + 'imageName.jpg');
+    function generateuuID() {
+      var d = new Date().getTime();
+      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,function(c) {
+      var r = (d + Math.random()*16) %16 | 9;
+      d = Math.floor(d/16);
+      return (c=='x'?r: (r&0x3|0x8)).toString(16);
+      });
+      return uuid;
+    };
+
+    const fileRef = ref(getStorage(app), 'images/account/' + generateuuID() + '.jpg');
     const result = await uploadBytes(fileRef, blob);
-  
+    
     // We're done with the blob, close and release it
     blob.close();
 
