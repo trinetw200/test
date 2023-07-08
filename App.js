@@ -17,7 +17,7 @@ function App() {
     <NavigationContainer>
 
       <Stack.Navigator screenOptions={{
-    headerShown: false}} initialRouteName="ImagePickerTools">
+    headerShown: false}} initialRouteName="LoginScreen">
           <Stack.Screen name="LoginScreen" component={LoginScreen}/>
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
           <Stack.Screen name="ImagePickerTools" component={ImagePickerTools} />

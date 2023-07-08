@@ -21,39 +21,39 @@ function SettingsScreen() {
 }
 
 const Tab = createBottomTabNavigator();
-
+headerShown: false
 function MyHome() {
   return (
     <Tab.Navigator initialRouteName="Home" screenOptions={{
-        headerShown: false,tabBarInactiveTintColor: '#77FF00',tabBarActiveTintColor: '#77FF00'}}>
+        headerShown: false,tabBarActiveTintColor: '#e91e63'}}>
       <Tab.Screen name="HouseEdit" component={HomeScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home-edit" size={24} color="black" />
+            <MaterialCommunityIcons name="home-edit" size={size} color={color} />
           ),
         }}/>
       <Tab.Screen name="Calendar" component={SettingsScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="calendar-alt" size={24} color="black" />
+            <FontAwesome5 name="calendar-alt" size={size} color={color} />
           ),
         }} />
         <Tab.Screen name="Home" component={SettingsScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home-search" size={24} color="black" />
+            <MaterialCommunityIcons name="home-search" size={size} color={color}/>
           ),
         }} />
         <Tab.Screen name="PaymentRecord" component={SettingsScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="text-box-check-outline" size={24} color="black" />
+            <MaterialCommunityIcons name="text-box-check-outline" size={size} color={color} />
           ),
         }} />
         <Tab.Screen name="profile" component={SettingsScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle" size={24} color="black" />
+            <Ionicons name="person-circle" size={size} color={color} />
           ),
         }} />
     </Tab.Navigator>
