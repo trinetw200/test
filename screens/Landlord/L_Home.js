@@ -22,9 +22,10 @@ function SettingsScreen() {
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+function MyHome() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator initialRouteName="Home" screenOptions={{
+        headerShown: false,tabBarInactiveTintColor: '#77FF00',tabBarActiveTintColor: '#77FF00'}}>
       <Tab.Screen name="HouseEdit" component={HomeScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
@@ -59,10 +60,8 @@ function MyTabs() {
   );
 }
 
-export default function App() {
+export default function L_Home() {
   return (
-    <NavigationContainer>
-      <MyTabs />
-    </NavigationContainer>
+    <MyHome />
   );
 }

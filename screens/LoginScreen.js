@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } fro
 import {login} from '../models/LoginScreenModel';
 import { CheckBox } from '@rneui/themed';
 import { SaveUserInfo } from '../untils/UserInfo';
-
+import { StackActions } from '@react-navigation/native';
 
 export default function LoginScreen({ navigation }) {
   const [type, setType] = useState(0);
@@ -17,7 +17,11 @@ export default function LoginScreen({ navigation }) {
         if (type === 0) {
 
         } else {
-          navigation.navigate('L_HouseManagement');
+          //navigation.navigate('L_Home');
+          
+          navigation.dispatch(
+            StackActions.replace('L_Home', {})
+          );
         }
       });
     }
