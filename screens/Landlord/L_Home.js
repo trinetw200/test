@@ -8,7 +8,7 @@ function Separator({ length }) {
   return <View style={{ borderTopWidth: 1, borderTopColor: 'gray', marginVertical: 10, width: length }} />;
 }
 
-function HomeScreen({ navigation }) {
+export default function L_Home({ navigation }) {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -55,67 +55,6 @@ function HomeScreen({ navigation }) {
   );
 }
 
-
-function HouseManagementScreen() {
-  const navigation = useNavigation();
-
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <TouchableOpacity onPress={() => navigation.navigate('L_HouseManagement_View')}>
-        <Text>HomeManagement!</Text>
-      </TouchableOpacity>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
-const Tab = createBottomTabNavigator();
-headerShown: false
-function MyHome() {
-  return (
-    <Tab.Navigator initialRouteName="Home" screenOptions={{
-        headerShown: false,tabBarActiveTintColor: '#e91e63'}}>
-      <Tab.Screen name="HouseManagement" component={HouseManagementScreen} options={{
-          tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home-edit" size={size} color={color} />
-          ),
-        }}/>
-      <Tab.Screen name="Calendar" component={SettingsScreen} options={{
-          tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="calendar-alt" size={size} color={color} />
-          ),
-        }} />
-        <Tab.Screen name="Home" component={HomeScreen} options={{
-          tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home-search" size={size} color={color}/>
-          ),
-        }} />
-        <Tab.Screen name="PaymentRecord" component={SettingsScreen} options={{
-          tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="text-box-check-outline" size={size} color={color} />
-          ),
-        }} />
-        <Tab.Screen name="profile" component={SettingsScreen} options={{
-          tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle" size={size} color={color} />
-          ),
-        }} />
-    </Tab.Navigator>
-  );
-}
-
 const styles = StyleSheet.create({
   button: {
     margin: 20,
@@ -138,8 +77,4 @@ const styles = StyleSheet.create({
   // },
 });
 
-export default function L_Home() {
-  return (
-    <MyHome />
-  );
-}
+
