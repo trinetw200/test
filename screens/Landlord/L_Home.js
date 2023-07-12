@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { Text, View, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MaterialCommunityIcons, FontAwesome5, Ionicons   } from '@expo/vector-icons'; 
-import { useNavigation } from '@react-navigation/native';
+
 function Separator({ length }) {
   return <View style={{ borderTopWidth: 1, borderTopColor: 'gray', marginVertical: 10, width: length }} />;
 }

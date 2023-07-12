@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Text, View, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { Text, View, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, FontAwesome5, Ionicons   } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';

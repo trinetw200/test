@@ -20,7 +20,7 @@ export default function LoginScreen({ navigation }) {
           //navigation.navigate('L_Home');
           
           navigation.dispatch(
-            StackActions.replace('L_Home', {})
+            StackActions.replace('L_TabNavigator', {})
           );
         }
       });
