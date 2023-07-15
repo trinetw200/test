@@ -19,10 +19,11 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
-    headerShown: false}} initialRouteName="LoginScreen">
+    headerShown: false}} initialRouteName="L_HouseManagement_Insert">
           <Stack.Screen name="LoginScreen" component={LoginScreen}/>
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
           <Stack.Screen name="ImagePickerTools" component={ImagePickerTools} />
+          <Stack.Screen name="L_Home" component={L_Home} />
           <Stack.Screen name="L_TabNavigator" component={L_TabNavigator} />
           <Stack.Screen name="L_HouseManagement_Insert" component={L_HouseManagement_Insert} />
           <Stack.Screen name="L_HouseManagement_View" component={L_HouseManagement_View} />
