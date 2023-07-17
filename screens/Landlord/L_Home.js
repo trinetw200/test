@@ -131,11 +131,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
   },
-  // separator: {
-  //   height: 2,
-  //   backgroundColor: '#CED0CE',
-  //   marginVertical: 20,
-  // },
 });
 
 export default function L_Home() {
