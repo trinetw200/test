@@ -20,7 +20,7 @@ export default function LoginScreen({ navigation }) {
           //navigation.navigate('L_Home');
           
           navigation.dispatch(
-            StackActions.replace('L_Home', {})
+            StackActions.replace('L_TabNavigator', {})
           );
         }
       });
@@ -33,10 +33,15 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
+      <Text></Text>
       <Text style={styles.title}>RentEase</Text>
-      <Image source={require('../assets/LOGO-example.jpg')} style={{width: 300, height: 300}} />
-      <Text></Text>
-      <Text></Text>
+      <Image source={require('../assets/LOGO-example.jpg')} style={{width: 200, height: 200}} />
       <Text style={styles.title}>Login</Text>
       <View style={styles.form}>
       <View style={styles.checkBoxContainer}>

@@ -37,8 +37,6 @@ export default () => (
     <View testID="Beautiful" style={styles.slide2}>
       <Text style={styles.text}>Beautiful</Text>
     </View>
-    <View testID="Simple" style={styles.slide3}>
-      <Text style={styles.text}>And simple</Text>
-    </View>
+    
   </Swiper>
 )

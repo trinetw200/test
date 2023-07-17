@@ -4,9 +4,9 @@ import {WriteHouseData} from '../../../models/L_HouseManagementModel';
 import { CheckBox } from '@rneui/themed';
 import { GetUserName,GetUserAccount,GetUserPhone } from '../../../untils/UserInfo';
 
-const Separator = () => {
-  return <View style={styles.separator} />;
-};
+function Separator({ length }) {
+  return <View style={{ borderTopWidth: 1, borderTopColor: 'gray', marginVertical: 10, width: 300 }} />;
+}
 
 export default function L_HouseManagement({ navigation }) {
 
@@ -31,6 +31,8 @@ export default function L_HouseManagement({ navigation }) {
   const [area, setArea] = useState('');
   const [pattern, setPattern] = useState('');
   const [floor, setFloor] = useState('');
+  const [payment_period, setpayment_period] = useState('');
+  const [state, setState] = useState(0);
   const [lease_term, setLease_term] = useState('');
   const [management_fee, setManagement_fee] = useState('');
   const [pet, setPet] = useState(0);
@@ -49,10 +51,10 @@ export default function L_HouseManagement({ navigation }) {
   });
 
   function handleRegister() {
-    // 處理註冊邏輯
+    // 處理新增邏輯
     const successCallBack = (account,name,phone,type) =>{
       Alert.alert('', '新增成功', [
-        {text: '完成', onPress: () => navigation.navigate('LoginScreen')},
+        {text: '完成', onPress: () => navigation.navigate('L_Home')},
       ]);
     }
     const failCallBack = () =>{
@@ -127,6 +129,34 @@ export default function L_HouseManagement({ navigation }) {
               onChangeText={(text) => setFloor(text)}
             />
           </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={styles.inputLabel}>繳款期別：　</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="輸入月繳、半年繳或年繳"
+              value={payment_period}
+              onChangeText={(text) => setpayment_period(text)}
+            />
+          </View>
+
+          <View style={styles.radioContainer}>
+          <Text>租屋狀態：</Text>
+          <CheckBox
+              title="出租"
+              checked={state === 0}
+              onPress={() => setState(0)}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+          />
+          <CheckBox
+              title="空屋"
+              checked={state === 1}
+              onPress={() => setState(1)}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+          />
+        </View>
 
           <Separator />
 
@@ -288,7 +318,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 40,
@@ -334,7 +364,8 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 15,
+    width: 300,
   },
   inputLabel: {
     fontSize: 14,
@@ -351,10 +382,5 @@ const styles = StyleSheet.create({
     width: 32,
     height: 32,
     marginBottom: 5,
-  },
-  separator: {
-    height: 2,
-    backgroundColor: '#CED0CE',
-    marginVertical: 20,
   },
 });
