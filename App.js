@@ -9,7 +9,6 @@ import L_HouseManagement_Insert from './screens/Landlord/L_HouseManagement/L_Hou
 import L_HouseManagement_View from './screens/Landlord/L_HouseManagement/L_HouseManagement_View';
 import ImagePickerTools from './untils/ImagePickerTools';
 import L_TabNavigator from './screens/Landlord/L_TabNavigator';
-
 import Doris from './screens/Doris';
 
 const Stack = createNativeStackNavigator();
@@ -19,7 +18,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
-    headerShown: false}} initialRouteName="L_HouseManagement_Insert">
+    headerShown: false}} initialRouteName="Doris">
           <Stack.Screen name="LoginScreen" component={LoginScreen}/>
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
           <Stack.Screen name="ImagePickerTools" component={ImagePickerTools} />
