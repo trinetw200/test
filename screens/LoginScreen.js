@@ -15,7 +15,9 @@ export default function LoginScreen({ navigation }) {
     const successCallBack = (account,name,phone,type) =>{
       SaveUserInfo(account,name,phone,type).then(() => {
         if (type === 0) {
-
+          navigation.dispatch(
+            StackActions.replace('T_TabNavigator', {})
+          );
         } else {
           //navigation.navigate('L_Home');
           
