@@ -10,12 +10,12 @@ export default function L_Home({ navigation }) {
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       {/* Top Section */}
-      <View style={{ flexDirection: 'row', marginBottom: 20, alignItems: 'center' }}>
+      {/* <View style={{ flexDirection: 'row', marginBottom: 20, alignItems: 'center' }}>
         <Image source={require('../../assets/user.png')} style={{ width: 50, height: 50 }}/>
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('L_HouseManagement_View')}>
           <Text style={styles.buttonText}>檢視房屋</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
 
       {/* Middle Section */}
       <View style={{ marginBottom: 20 }}>

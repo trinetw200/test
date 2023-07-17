@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView  } from 'react-native';
 import {writeUserData} from '../models/RegisterScreenModel';
 import { CheckBox } from '@rneui/themed';
+
+function Separator({ length }) {
+  return <View style={{ borderTopWidth: 1, borderTopColor: 'gray', marginVertical: 10, width: 300 }} />;
+}
 
 export default function RegisterScreen({ navigation }) {
   const [type, setType] = useState(0);
@@ -25,20 +29,25 @@ export default function RegisterScreen({ navigation }) {
   }
 
   return (
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
     <View style={styles.container}>
-      <Image source={require('../assets/edit.png')} style={{width: 100, height: 100}} />
+      <Text></Text>
       <Text></Text>
       <Text></Text>
       <Text style={styles.title}>Register</Text>
+      <Image source={require('../assets/LOGO.jpg')} style={{width: 250, height: 200}} />
+      <Text></Text>
       <View style={styles.form}>
-        <Text style={styles.checkbox_inputLabel}>身分</Text>
         <View style={styles.checkBoxContainer}>
+        <Text style={styles.checkbox_inputLabel}>身分          </Text>
           <CheckBox
               title="我是房客"
               checked={type === 0}
               onPress={() => setType(0)}
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
+              checkedColor="pink" // 變更選中狀態的顏色為綠色
+              uncheckedColor="#8FAADC" // 變更未選中狀態的顏色為紅色
           />
           <CheckBox
               title="我是房東"
@@ -46,46 +55,52 @@ export default function RegisterScreen({ navigation }) {
               onPress={() => setType(1)}
               checkedIcon="dot-circle-o"
               uncheckedIcon="circle-o"
+              checkedColor="pink" // 變更選中狀態的顏色為綠色
+              uncheckedColor="#8FAADC" // 變更未選中狀態的顏色為紅色
           />
         </View>
-        
+        <Text style={styles.inputLabel}>姓名</Text>
+        <Text></Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>姓名：</Text>
           <TextInput
             style={styles.input}
-            placeholder="輸入姓名"
+            placeholder="  輸入姓名"
             value={username}
             onChangeText={(text) => setUsername(text)}
           />
         </View>
+        <Text style={styles.inputLabel}>帳號</Text>
+        <Text></Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>帳號：</Text>
           <TextInput
             style={styles.input}
-            placeholder="輸入帳號"
+            placeholder="  輸入帳號"
             value={account}
             onChangeText={(text) => setAccount(text)}
           />
         </View>
+        <Text style={styles.inputLabel}>密碼</Text>
+        <Text></Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>密碼：</Text>
           <TextInput
             style={styles.input}
-            placeholder="輸入密碼"
+            placeholder="  輸入密碼"
             secureTextEntry={true}
             value={password}
             onChangeText={(text) => setPassword(text)}
           />
         </View>
-        <Text style={styles.checkbox_inputLabel}>性別</Text>
-        <View style={styles.checkBoxContainer}>
         
+        <View style={styles.checkBoxContainer}>
+        <Text style={styles.checkbox_inputLabel}>性別                     </Text>
          <CheckBox
            title="女"
            checked={sex === 0}
            onPress={() => setSex(0)}
            checkedIcon="dot-circle-o"
            uncheckedIcon="circle-o"
+           checkedColor="pink" // 變更選中狀態的顏色為綠色
+           uncheckedColor="#8FAADC" // 變更未選中狀態的顏色為紅色
          />
          <CheckBox
            title="男"
@@ -93,13 +108,16 @@ export default function RegisterScreen({ navigation }) {
            onPress={() => setSex(1)}
            checkedIcon="dot-circle-o"
            uncheckedIcon="circle-o"
+           checkedColor="pink" // 變更選中狀態的顏色為綠色
+           uncheckedColor="#8FAADC" // 變更未選中狀態的顏色為紅色
          />
         </View>
+        <Text style={styles.inputLabel}>電話</Text>
+        <Text></Text>
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>電話：</Text>
           <TextInput
             style={styles.input}
-            placeholder="輸入電話"
+            placeholder="  輸入電話"
             value={phone}
             onChangeText={(text) => setPhone(text)}
           />
@@ -112,6 +130,7 @@ export default function RegisterScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       </View>
+      </ScrollView>
   );
 }
 
@@ -133,18 +152,18 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    borderRadius: 4,
+    borderRadius: 100,
     padding: 5,
-    flex: 1,
-    width: 'auto',
+    width: '80%',
+    paddingHorizontal: 10,
   },
   button: {
     margin: 20,
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
-    backgroundColor: '#406E9F',
-    borderRadius: 9,
+    backgroundColor: '#8FAADC',
+    borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -155,7 +174,7 @@ const styles = StyleSheet.create({
   checkBoxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     marginBottom: 16,
   },
   inputContainer: {
@@ -167,9 +186,9 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginRight: 8,
   },
-  checkbox_inputLabel: {
-    fontSize: 16,
-    marginRight: 8,
-    textAlign: 'center',
-  },
+  // checkbox_inputLabel: {
+  //   fontSize: 16,
+  //   marginRight: 8,
+  //   textAlign: 'center',
+  // },
 });

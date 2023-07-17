@@ -18,7 +18,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{
-    headerShown: false}} initialRouteName="LoginScreen">
+    headerShown: false}} initialRouteName="T_TabNavigato">
           <Stack.Screen name="LoginScreen" component={LoginScreen}/>
           <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
           <Stack.Screen name="ImagePickerTools" component={ImagePickerTools} />

@@ -27,7 +27,7 @@ function HouseSearchScreen() {
     );
   }
 
-export default function L_TabNavigator() {
+export default function T_TabNavigator() {
   return (
     <Tab.Navigator initialRouteName="Home" screenOptions={{
         headerShown: false,tabBarActiveTintColor: '#e91e63'}}>
