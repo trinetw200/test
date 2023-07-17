@@ -13,7 +13,7 @@ function HouseManagementScreen() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <TouchableOpacity onPress={() => navigation.navigate('L_HouseManagement_View')}>
-          <Text>HomeManagement!</Text>
+          <Text>HouseManagement!</Text>
         </TouchableOpacity>
       </View>
     );
