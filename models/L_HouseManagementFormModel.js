@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getDatabase, ref, set, push, get, child } from "firebase/database";
 import { firebaseConfig } from '../untils/FirebaseConfig';
 
-export class L_HouseManagementModel {
+export class L_HouseManagementFormModel {
   houseData = {
     title: '',
     roomname: '',

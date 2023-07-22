@@ -73,6 +73,16 @@ class L_HouseManagement_Form extends Component {
         return (
             <View style={styles.form}>
                 <View style={styles.inputContainer}>
+                    <Text style={styles.inputLabel}>標題：　</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="輸入標題"
+                        defaultValue={houseData.title}
+                        onEndEditing={(event) => houseData.title = event.nativeEvent.text}
+                    />
+                </View>
+
+                <View style={styles.inputContainer}>
                     <Text style={styles.inputLabel}>房間名稱：　</Text>
                     <TextInput
                         style={styles.input}
