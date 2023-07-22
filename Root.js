@@ -33,9 +33,10 @@ export default function Root() {
           <>
           <Stack.Navigator screenOptions={{
             headerShown: false
-          }} initialRouteName="LoginScreen">
+          }} initialRouteName="ImagePickerTools">
             <Stack.Screen name="LoginScreen" component={LoginScreen} />
             <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+            <Stack.Screen name="ImagePickerTools" component={ImagePickerTools} />
           </Stack.Navigator>
           </>
         )

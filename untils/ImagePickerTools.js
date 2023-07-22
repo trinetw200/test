@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Image, View, ActivityIndicator, StyleSheet, Text } from 'react-native';
+import { Button, Image, View, ActivityIndicator, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { UploadImageAsync } from '../untils/ImageUpload';
 import PagerView from 'react-native-pager-view';
@@ -20,24 +20,25 @@ export default function ImagePickerExample() {
     if (!result.canceled) {
       const urls = [];
       await Promise.all(
-        result.assets.map ( async (asset) => {
-          await UploadImageAsync(asset.uri).then((uploadUrl) =>{
+        result.assets.map(async (asset) => {
+          await UploadImageAsync(asset.uri).then((uploadUrl) => {
             urls.push(uploadUrl);
-        })}
-      ));
+          })
+        }
+        ));
 
-      setImages([...images,...urls]);
+      setImages([...images, ...urls]);
     }
   };
 
   const takePhoto = async () => {
 
     let permiss = await ImagePicker.getCameraPermissionsAsync();
-    if (!permiss.granted){
+    if (!permiss.granted) {
       permiss = await ImagePicker.requestCameraPermissionsAsync();
-    } 
+    }
 
-    console.log('permiss:',permiss);
+    console.log('permiss:', permiss);
     let result = await ImagePicker.launchCameraAsync({
       allowsEditing: false,
       aspect: [4, 3],
@@ -51,53 +52,86 @@ export default function ImagePickerExample() {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button title="Pick an image from camera roll" onPress={pickImage} />
-      <Button title="takePhotol" onPress={takePhoto} />
+    <View style={imageStyle.container}>
+      <View style={imageStyle.wrapperContainer}>
+      <View style={imageStyle.swiperContainer}>
+        {images.length !== 0 ? (
+          <Swiper showsButtons loop={true}>
+            {images.map((image) => (
+              <View key={image} style={imageStyle.slide1}>
+                <Image source={{ uri: image }} style={{ width: 350, height: 350 }} />
+              </View>
+            ))}
+          </Swiper>
+        ) : (
+          <></>
+        )}
+        </View>
+      </View>
 
+      <View style={imageStyle.buttonsContainer}>
+        
+        <TouchableOpacity style={imageStyle.button} onPress={pickImage}>
+        <Image
+          source={require('../assets/add.png')}
+          style={{ width: 45, height: 45 }}
+        />
+        </TouchableOpacity>
+        <TouchableOpacity style={imageStyle.button} onPress={takePhoto}>
+        <Image
+          source={require('../assets/camera.png')}
+          style={{ width: 50, height: 50 }}
+        />
+        </TouchableOpacity>
+
+      </View>
       {/* {images.map((image) =>
         <Image key={image} source={{ uri: image }} style={{width: 200, height: 200}} />
       )} */}
-      
+
       {/* <Image source={{ uri: image }} style={{ width: 200, height: 200 }} /> */}
-      {/* <Swiper style={styles.wrapper} showsButtons loop={true}>
+      {/* <Swiper style={imageStyle.wrapper} showsButtons loop={true}>
         {images != null ?images.map((image) => 
            
-          <View key={image} style={styles.slide1}>
+          <View key={image} style={imageStyle.slide1}>
             <Image key={image} source={{ uri: image }} style={{width: 200, height: 200}} />
           </View>
           
         ):''}
       </Swiper> */}
 
-      {/* <Swiper style={styles.wrapper} showsButtons loop={true}>
+      {/* <Swiper style={imageStyle.wrapper} showsButtons loop={true}>
         {images != null ?images.map((image) => 
            
-          <View key={image} style={styles.slide1}>
+          <View key={image} style={imageStyle.slide1}>
             <Image key={image} source={{ uri: image }} style={{width: 200, height: 200}} />
           </View>
           
         ):''}
       </Swiper> */}
-    {images.length != 0 ? 
-      <Swiper style={styles.wrapper} showsButtons loop={true}>
-      {images.length != 0 && images.map((image) => 
-        
-        <View key={image} style={styles.slide1}>
-          <Image key={image} source={{ uri: image }} style={{width: '100%', height: '100%'}} />
-        </View>
-        
-      )}
-      </Swiper>:<></>}
+
     </View>
   );
 };
 
 
-const styles = StyleSheet.create({
+const imageStyle = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  swiperContainer: {
+    flex: 1,
+    justifyContent: 'center', // 將 Swiper 置中
+    alignItems: 'flex-start', // 將 Swiper 垂直向上對齊
+    maxHeight: 350, // 調整此值來縮小 Swiper 的高度
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    padding: 20,
   },
   horizontal: {
     flexDirection: 'row',
@@ -110,20 +144,26 @@ const styles = StyleSheet.create({
     left: '50%',
     transform: [{ translateX: -25 }, { translateY: -25 }],
   },
-  wrapper: {},
+  wrapperContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    maxHeight: 350,
+    marginTop: -550, // 調整此值來將容器及其內容向上移動
+  },
   slide1: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
+  button: {
+    margin: 20,
+    padding: 10,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#8FAADC',
+    borderRadius: 100,
     alignItems: 'center',
-  },
-  slide3: {
-    flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
   },
 });

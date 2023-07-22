@@ -4,6 +4,7 @@ import { firebaseConfig } from '../untils/FirebaseConfig';
 
 export class L_HouseManagementModel {
   houseData = {
+    title: '',
     roomname: '',
     price: '',
     address: '',
