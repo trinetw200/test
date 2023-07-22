@@ -1,6 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
-import { ListItem, Image , Skeleton } from '@rneui/themed';
+import { ListItem, Image } from '@rneui/themed';
+import { L_HouseManagementListModel } from '../../../models/L_HouseManagementListModel';
+import { useSelector } from 'react-redux';
+import { useFocusEffect } from '@react-navigation/native';
 
 const list = [
   {
@@ -41,18 +44,37 @@ const list = [
 ]
 
 export default function L_HouseManagement_List({ navigation }) {
-  keyExtractor = (item, index) => index.toString()
+
+  const userInfoData = useSelector((state) => state.userInfoData);
+  const [itemList, setItemList] = useState([]);
+  
+  useFocusEffect(
+    React.useCallback(() => {
+      const model = new L_HouseManagementListModel();
+      const account = userInfoData.account;
+      
+      if (account != '') {
+        const successCallBack = (itemList) => {
+          console.log(itemList);
+          setItemList(itemList);
+        }
+        model.getHouseDataList(userInfoData.account,successCallBack);
+      }
+    }, [])
+  );
+
+  keyExtractor = (item) => item.houseId;
 
   renderItem = ({ item }) => (
     <ListItem>
       <Image
-        source={{ uri: item.url}}
+        source={{ uri: item.image }}
         containerStyle={styles.item}
-        PlaceholderContent={<View style={styles.activityIndicator}><ActivityIndicator size="large" color="#0000ff"/></View>}
+        PlaceholderContent={<View style={styles.activityIndicator}><ActivityIndicator size="large" color="#0000ff" /></View>}
       />
       <ListItem.Content>
-        <ListItem.Title>{item.name}</ListItem.Title>
-        <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+        <ListItem.Title>{item.title}</ListItem.Title>
+        <ListItem.Subtitle>{item.price}</ListItem.Subtitle>
       </ListItem.Content>
     </ListItem>
   )
@@ -61,7 +83,7 @@ export default function L_HouseManagement_List({ navigation }) {
     <View>
       <FlatList
         keyExtractor={keyExtractor}
-        data={list}
+        data={itemList}
         renderItem={renderItem}
       />
       {/* <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('L_HouseManagement_Insert')}>
@@ -74,7 +96,7 @@ export default function L_HouseManagement_List({ navigation }) {
 const styles = StyleSheet.create({
   list: {
     width: '100%',
-    
+
   },
   item: {
     aspectRatio: 1,
@@ -82,8 +104,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   activityIndicator: {
-    height:'100%',
+    height: '100%',
     alignItems: 'center',
     justifyContent: 'center',
   }
-  });
+});
