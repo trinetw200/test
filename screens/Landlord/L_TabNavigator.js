@@ -4,13 +4,13 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, FontAwesome5, Ionicons   } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 import L_Home from './L_Home';
-import L_HouseManagement_View from '../Landlord/L_HouseManagement/L_HouseManagement_View'
+import L_HouseManagement_Insert from './L_HouseManagement/L_HouseManagement_Insert';
+import L_HouseManagement_Update from './L_HouseManagement/L_HouseManagement_Update';
 
 const Tab = createBottomTabNavigator();
 
 function HouseManagementScreen() {
     const navigation = useNavigation();
-  
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <TouchableOpacity onPress={() => navigation.navigate('L_HouseManagement_View')}>
@@ -18,7 +18,7 @@ function HouseManagementScreen() {
         </TouchableOpacity>
       </View>
     );
-  }
+}
   
   function SettingsScreen() {
     return (
