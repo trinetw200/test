@@ -4,6 +4,9 @@ import {WriteHouseData} from '../../../models/L_HouseManagementModel';
 import { CheckBox } from '@rneui/themed';
 import { GetUserName,GetUserAccount,GetUserPhone } from '../../../untils/UserInfo';
 
+function Separator({ length }) {
+  return <View style={{ borderTopWidth: 1, borderTopColor: 'gray', marginVertical: 10, width: length }} />;
+}
 
 export default function L_HouseManagement({ navigation }) {
 
