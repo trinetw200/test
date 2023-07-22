@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { login } from '../models/LoginScreenModel';
 import { CheckBox } from '@rneui/themed';
-import { SaveUserInfo } from '../untils/UserInfo';
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../src/redux/reducers/userInfoSlice';
 
@@ -14,9 +13,7 @@ export default function LoginScreen({ navigation }) {
   const handleLogin = () => {
     // TODO: 實現登入邏輯
     const successCallBack = (account, name, phone, type) => {
-      SaveUserInfo(account, name, phone, type).then(() => {
-        dispatch(userLogin({ account, name, phone, type }));
-      });
+      dispatch(userLogin({ account, name, phone, type }));
     }
     const failCallBack = () => {
       Alert.alert('', '登入失敗');

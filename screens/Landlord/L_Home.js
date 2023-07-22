@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
 import L_HouseInfoModel from '../../models/L_HomeInfoModel';
-import { GetUserName,GetUserAccount } from '../../untils/UserInfo';
 import { useFocusEffect } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
 
 function Separator({ length }) {
   return <View style={{ borderTopWidth: 1, borderTopColor: 'gray', marginVertical: 10, width: length }} />;
@@ -14,23 +14,20 @@ export default function L_Home({ navigation }) {
   const [total, setTotal] = useState(0);
   const [rentCount, setRentCount] = useState(0);
   const [emptyCount, setEmpty] = useState(0);
+  const userInfoData = useSelector((state) => state.userInfoData);
 
   useFocusEffect(
     React.useCallback(() => {
-      GetUserAccount().then((val) => {
-        L_HouseInfoModel.GetHouseInfo(val,(total,rentCount,emptyCount)=>{
-          setTotal(total);
-          setRentCount(rentCount);
-          setEmpty(emptyCount);
-        });
+      L_HouseInfoModel.GetHouseInfo(userInfoData.account,(total,rentCount,emptyCount)=>{
+        setTotal(total);
+        setRentCount(rentCount);
+        setEmpty(emptyCount);
       });
     }, [])
   );
 
   useEffect(() => {
-    GetUserName().then((val) => {
-      setName(val);
-    });
+    setName(userInfoData.name);
   }, []);
 
   return (

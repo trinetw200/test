@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { L_HouseManagementFormModel } from '../../../models/L_HouseManagementFormModel';
 import { CheckBox } from '@rneui/themed';
-import { GetUserName, GetUserAccount, GetUserPhone } from '../../../untils/UserInfo';
-
+import { connect } from 'react-redux';
 
 const Separator = () => {
     return <View style={styles.separator} />;
 };
 
+
 class L_HouseManagement_Form extends Component {
+
     constructor(props) {
         super(props);
         this.houseModel = new L_HouseManagementFormModel();
@@ -17,22 +18,16 @@ class L_HouseManagement_Form extends Component {
     }
 
     componentDidMount() {
-        GetUserName().then((val) => {
-            this.setState(({ ...this.state, landlord_name: val }));
-        });
-        GetUserPhone().then((val) => {
-            this.setState(({ ...this.state, landlord_phone: val }));
-        });
-        GetUserAccount().then((val) => {
-            this.account = '9';//val;
-            if (this.props.id) {
-                //取得租屋資訊
-                this.houseModel.getHouseData(this.account, this.props.id, () => {
-                    const newHouseData = this.houseModel.houseData;
-                    this.setState(newHouseData);
-                });
-            }
-        });
+        const userInfoData = this.props.userInfoData;
+        if (this.props.houseId) {
+            //取得租屋資訊
+            this.houseModel.getHouseData(userInfoData.account, this.props.houseId, () => {
+                const newHouseData = this.houseModel.houseData;
+                this.setState(newHouseData);
+            });
+        } else {
+            this.setState(({ ...this.state, landlord_phone: userInfoData.phone, landlord_name: userInfoData.name }));
+        }
     }
 
     handleRegister() {
@@ -49,7 +44,7 @@ class L_HouseManagement_Form extends Component {
             }
             this.houseModel.houseData = this.state;
             console.log(this.houseModel.houseData);
-            this.houseModel.updateHouseData(this.account,this.props.id, successCallBack, failCallBack);
+            this.houseModel.updateHouseData(this.account, this.props.id, successCallBack, failCallBack);
         } else {
             // 處理註冊邏輯
             const successCallBack = () => {
@@ -342,7 +337,7 @@ class L_HouseManagement_Form extends Component {
     }
 }
 
-export default L_HouseManagement_Form;
+export default connect(state => ({userInfoData:state.userInfoData}))(L_HouseManagement_Form)
 
 const styles = StyleSheet.create({
     form: {

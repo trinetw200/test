@@ -5,44 +5,6 @@ import { L_HouseManagementListModel } from '../../../models/L_HouseManagementLis
 import { useSelector } from 'react-redux';
 import { useFocusEffect } from '@react-navigation/native';
 
-const list = [
-  {
-    name: 'Amy Farha',
-    url: 'https://source.unsplash.com/random?sig=1aaxx',
-    subtitle: 'Vice President',
-  },
-  {
-    name: 'Chris Jackson',
-    url: 'https://source.unsplash.com/random?sig=21ssa',
-    subtitle: 'Vice Chairman'
-  },
-  {
-    name: 'Chris Jackson',
-    url: 'https://source.unsplash.com/random?sig=3',
-    subtitle: 'Vice Chairman'
-  },
-  {
-    name: 'Chris Jackson',
-    url: 'https://source.unsplash.com/random?sig=4',
-    subtitle: 'Vice Chairman'
-  },
-  {
-    name: 'Chris Jackson',
-    url: 'https://source.unsplash.com/random?sig=5',
-    subtitle: 'Vice Chairman'
-  },
-  {
-    name: 'Chris Jackson',
-    url: 'https://source.unsplash.com/random?sig=6',
-    subtitle: 'Vice Chairman'
-  },
-  {
-    name: 'Chris Jackson',
-    url: 'https://source.unsplash.com/random?sig=7',
-    subtitle: 'Vice Chairman'
-  },
-]
-
 export default function L_HouseManagement_List({ navigation }) {
 
   const userInfoData = useSelector((state) => state.userInfoData);
@@ -55,7 +17,6 @@ export default function L_HouseManagement_List({ navigation }) {
       
       if (account != '') {
         const successCallBack = (itemList) => {
-          console.log(itemList);
           setItemList(itemList);
         }
         model.getHouseDataList(userInfoData.account,successCallBack);
@@ -66,11 +27,11 @@ export default function L_HouseManagement_List({ navigation }) {
   keyExtractor = (item) => item.houseId;
 
   renderItem = ({ item }) => (
-    <ListItem>
+    <ListItem bottomDivider onPress={() => navigation.navigate('L_HouseManagement_Update',{houseId:item.houseId})}>
       <Image
         source={{ uri: item.image }}
         containerStyle={styles.item}
-        PlaceholderContent={<View style={styles.activityIndicator}><ActivityIndicator size="large" color="#0000ff" /></View>}
+        PlaceholderContent={<View style={styles.activityIndicator}><ActivityIndicator size="large" color="#ffffff" /></View>}
       />
       <ListItem.Content>
         <ListItem.Title>{item.title}</ListItem.Title>
