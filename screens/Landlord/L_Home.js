@@ -1,11 +1,37 @@
-import * as React from 'react';
+import React, { useState,useEffect } from 'react';
 import { Text, View, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
+import L_HouseInfoModel from '../../models/L_HomeInfoModel';
+import { GetUserName,GetUserAccount } from '../../untils/UserInfo';
+import { useFocusEffect } from '@react-navigation/native';
 
 function Separator({ length }) {
   return <View style={{ borderTopWidth: 1, borderTopColor: 'gray', marginVertical: 10, width: length }} />;
 }
 
 export default function L_Home({ navigation }) {
+
+  const [name, setName] = useState('');
+  const [total, setTotal] = useState(0);
+  const [rentCount, setRentCount] = useState(0);
+  const [emptyCount, setEmpty] = useState(0);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      GetUserAccount().then((val) => {
+        L_HouseInfoModel.GetHouseInfo(val,(total,rentCount,emptyCount)=>{
+          setTotal(total);
+          setRentCount(rentCount);
+          setEmpty(emptyCount);
+        });
+      });
+    }, [])
+  );
+
+  useEffect(() => {
+    GetUserName().then((val) => {
+      setName(val);
+    });
+  }, []);
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -19,7 +45,7 @@ export default function L_Home({ navigation }) {
 
       {/* Middle Section */}
       <View style={{ marginBottom: 20 }}>
-        <Text style={{ textAlign: 'left' }}>OOO 先生 / 小姐您好：</Text>
+        <Text style={{ textAlign: 'left' }}>{name} 先生 / 小姐您好：</Text>
         <Text style={{ textAlign: 'left' }}>以下是您房屋出租的狀態。</Text>
       </View>
 
@@ -28,15 +54,15 @@ export default function L_Home({ navigation }) {
         <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderColor: '#406E9F', borderWidth: 1, borderRadius: 10, padding: 10 }}>
           <View style={{ backgroundColor: '#E2E8F0', padding: 10, borderRadius: 5, marginRight: 10 }}>
             <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>總房數</Text>
-            <Text style={{ textAlign: 'center' }}>DB抓取</Text>
+            <Text style={{ textAlign: 'center' }}>{total}</Text>
           </View>
           <View style={{ backgroundColor: '#E2E8F0', padding: 10, borderRadius: 5, marginRight: 10 }}>
             <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>出租中</Text>
-            <Text style={{ textAlign: 'center' }}>DB抓取</Text>
+            <Text style={{ textAlign: 'center' }}>{rentCount}</Text>
           </View>
           <View style={{ backgroundColor: '#E2E8F0', padding: 10, borderRadius: 5 }}>
             <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>空屋數</Text>
-            <Text style={{ textAlign: 'center' }}>DB抓取</Text>
+            <Text style={{ textAlign: 'center' }}>{emptyCount}</Text>
           </View>
         </View>
         <Text></Text>

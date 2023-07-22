@@ -4,20 +4,23 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, FontAwesome5, Ionicons   } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 import L_Home from './L_Home';
+import L_HouseManagement_Insert from './L_HouseManagement/L_HouseManagement_Insert';
+import L_HouseManagement_Update from './L_HouseManagement/L_HouseManagement_Update';
+
 
 const Tab = createBottomTabNavigator();
 
-function HouseManagementScreen() {
-    const navigation = useNavigation();
+// function HouseManagementScreen() {
+//     const navigation = useNavigation();
   
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <TouchableOpacity onPress={() => navigation.navigate('L_HouseManagement_View')}>
-          <Text>HomeManagement!</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+//     return (
+//       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+//         <TouchableOpacity onPress={() => navigation.navigate('L_HouseManagement_Insert')}>
+//           <Text>HomeManagement!</Text>
+//         </TouchableOpacity>
+//       </View>
+//     );
+//   }
   
   function SettingsScreen() {
     return (
@@ -31,7 +34,7 @@ export default function L_TabNavigator() {
   return (
     <Tab.Navigator initialRouteName="Home" screenOptions={{
         headerShown: false,tabBarActiveTintColor: '#e91e63'}}>
-      <Tab.Screen name="HouseManagement" component={HouseManagementScreen} options={{
+      <Tab.Screen name="HouseManagement" component={L_HouseManagement_Update} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home-edit" size={size} color={color} />

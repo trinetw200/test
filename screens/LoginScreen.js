@@ -1,58 +1,51 @@
 import React, { useState } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
-import {login} from '../models/LoginScreenModel';
+import { login } from '../models/LoginScreenModel';
 import { CheckBox } from '@rneui/themed';
 import { SaveUserInfo } from '../untils/UserInfo';
-import { StackActions } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { userLogin } from '../src/redux/reducers/userInfoSlice';
 
 export default function LoginScreen({ navigation }) {
   const [type, setType] = useState(0);
   const [account, setAccount] = useState(''); //帳號
   const [password, setPassword] = useState(''); //密碼
-
+  const dispatch = useDispatch();
   const handleLogin = () => {
     // TODO: 實現登入邏輯
-    const successCallBack = (account,name,phone,type) =>{
-      SaveUserInfo(account,name,phone,type).then(() => {
-        if (type === 0) {
-
-        } else {
-          //navigation.navigate('L_Home');
-          
-          navigation.dispatch(
-            StackActions.replace('L_TabNavigator', {})
-          );
-        }
+    const successCallBack = (account, name, phone, type) => {
+      SaveUserInfo(account, name, phone, type).then(() => {
+        dispatch(userLogin({ account, name, phone, type }));
       });
     }
-    const failCallBack = () =>{
+    const failCallBack = () => {
       Alert.alert('', '登入失敗');
     }
-    login(account,password,type,successCallBack,failCallBack);
+    login(account, password, type, successCallBack, failCallBack);
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>RentEase</Text>
-      <Image source={require('../assets/LOGO-example.jpg')} style={{width: 300, height: 300}} />
+      <Image source={require('../assets/LOGO-example.jpg')} style={{ width: 300, height: 300 }} />
       <Text></Text>
       <Text></Text>
       <Text style={styles.title}>Login</Text>
       <View style={styles.form}>
-      <View style={styles.checkBoxContainer}>
+        <View style={styles.checkBoxContainer}>
           <CheckBox
-              title="我是房客"
-              checked={type === 0}
-              onPress={() => setType(0)}
-              checkedIcon="dot-circle-o"
-              uncheckedIcon="circle-o"
+            title="我是房客"
+            checked={type === 0}
+            onPress={() => setType(0)}
+            checkedIcon="dot-circle-o"
+            uncheckedIcon="circle-o"
           />
           <CheckBox
-              title="我是房東"
-              checked={type === 1}
-              onPress={() => setType(1)}
-              checkedIcon="dot-circle-o"
-              uncheckedIcon="circle-o"
+            title="我是房東"
+            checked={type === 1}
+            onPress={() => setType(1)}
+            checkedIcon="dot-circle-o"
+            uncheckedIcon="circle-o"
           />
         </View>
         <TextInput
