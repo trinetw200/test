@@ -1,56 +1,89 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import ModalDropdown from 'react-native-modal-dropdown';
+import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { ListItem, Image , Skeleton } from '@rneui/themed';
 
-const L_HouseManagement_View = ({ navigation }) => {
-  const dropdownOptions = ['101', '102', '103']; //從DB抓
+const list = [
+  {
+    name: 'Amy Farha',
+    url: 'https://source.unsplash.com/random?sig=1aaxx',
+    subtitle: 'Vice President',
+  },
+  {
+    name: 'Chris Jackson',
+    url: 'https://source.unsplash.com/random?sig=21ssa',
+    subtitle: 'Vice Chairman'
+  },
+  {
+    name: 'Chris Jackson',
+    url: 'https://source.unsplash.com/random?sig=3',
+    subtitle: 'Vice Chairman'
+  },
+  {
+    name: 'Chris Jackson',
+    url: 'https://source.unsplash.com/random?sig=4',
+    subtitle: 'Vice Chairman'
+  },
+  {
+    name: 'Chris Jackson',
+    url: 'https://source.unsplash.com/random?sig=5',
+    subtitle: 'Vice Chairman'
+  },
+  {
+    name: 'Chris Jackson',
+    url: 'https://source.unsplash.com/random?sig=6',
+    subtitle: 'Vice Chairman'
+  },
+  {
+    name: 'Chris Jackson',
+    url: 'https://source.unsplash.com/random?sig=7',
+    subtitle: 'Vice Chairman'
+  },
+]
 
-  const handleDropdownSelect = (index, option) => {
-    console.log(`Selected index: ${index}, Selected option: ${option}`);
-  };
+export default function L_HouseManagement_View({ navigation }) {
+  keyExtractor = (item, index) => index.toString()
+
+  renderItem = ({ item }) => (
+    <ListItem>
+      <Image
+        source={{ uri: item.url}}
+        containerStyle={styles.item}
+        PlaceholderContent={<View style={styles.activityIndicator}><ActivityIndicator size="large" color="#0000ff"/></View>}
+      />
+      <ListItem.Content>
+        <ListItem.Title>{item.name}</ListItem.Title>
+        <ListItem.Subtitle>{item.subtitle}</ListItem.Subtitle>
+      </ListItem.Content>
+    </ListItem>
+  )
 
   return (
-    <View style={styles.container}>
-      <Text></Text>
-      <Text></Text>
-      <Text></Text>
-      <ModalDropdown
-        options={dropdownOptions}
-        onSelect={handleDropdownSelect}
-        defaultValue="選擇房號"
-        style={{ padding: 10, borderWidth: 1, borderColor: 'black' }}
-        textStyle={{ fontSize: 16 }}
-        dropdownStyle={{ height: 200 }}
+    <View>
+      <FlatList
+        keyExtractor={keyExtractor}
+        data={list}
+        renderItem={renderItem}
       />
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('L_HouseManagement_Insert')}>
-          <Text style={styles.buttonText}>+</Text>
-      </TouchableOpacity>
+      {/* <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('L_HouseManagement_Insert')}>
+        <Text style={styles.buttonText}>+</Text>
+      </TouchableOpacity> */}
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
+  list: {
+    width: '100%',
+    
+  },
+  item: {
+    aspectRatio: 1,
+    width: '100%',
     flex: 1,
-    backgroundColor: '#fff',
+  },
+  activityIndicator: {
+    height:'100%',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  button: {
-    margin: 20,
-    padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
-    backgroundColor: '#8FAADC',
-    borderRadius: 100,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  buttonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 20,
-  },
-});
-
-export default L_HouseManagement_View;
+  }
+  });

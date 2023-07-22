@@ -8,7 +8,7 @@ const Stack = createNativeStackNavigator();
 
 export default function L_HouseManagement_Navigator ({ navigation }) {
   return (
-    <Stack.Navigator initialRouteName="L_HouseManagement_Insert">
+    <Stack.Navigator initialRouteName="L_HouseManagement_View">
     <Stack.Screen name="L_HouseManagement_View" component={L_HouseManagement_View}  screenOptions={{
         headerShown: false
       }}/>
