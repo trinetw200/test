@@ -26,11 +26,14 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>RentEase</Text>
-      <Image source={require('../assets/LOGO-example.jpg')} style={{ width: 300, height: 300 }} />
       <Text></Text>
       <Text></Text>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Log in on RentEase : )</Text>
+      <Text></Text>
+      
+      <Image source={require('../assets/LOGO.jpg')} style={{width: 250, height: 200}} />
+      <Text></Text>
+      <Text></Text>
       <View style={styles.form}>
         <View style={styles.checkBoxContainer}>
           <CheckBox
@@ -48,9 +51,10 @@ export default function LoginScreen({ navigation }) {
             uncheckedIcon="circle-o"
           />
         </View>
+        
         <TextInput
           style={styles.input}
-          placeholder="帳號"
+          placeholder="  帳號"
           keyboardType="default"
           autoCapitalize="none"
           value={account}
@@ -58,7 +62,7 @@ export default function LoginScreen({ navigation }) {
         />
         <TextInput
           style={styles.input}
-          placeholder="密碼"
+          placeholder="  密碼"
           secureTextEntry={true}
           autoCapitalize="none"
           value={password}
@@ -91,19 +95,21 @@ const styles = StyleSheet.create({
     width: '60%',
   },
   input: {
-    borderWidth: 1,
+    margin: 20,//按鈕與周圍元素之間的空間
+    borderWidth: 0,
     borderColor: '#ccc',
-    borderRadius: 4,
-    padding: 8,
-    marginBottom: 16,
+    backgroundColor: '#E2E2E2',
+    borderRadius: 100,
+    padding: 7,//按鈕內容與按鈕邊緣之間的空間。
+    marginBottom: 16,//上下間距
   },
   button: {
     margin: 20,
     padding: 10,
     paddingLeft: 20,
     paddingRight: 20,
-    backgroundColor: '#406E9F',
-    borderRadius: 9,
+    backgroundColor: '#8FAADC',
+    borderRadius: 100,//按鈕圓弧度
     alignItems: 'center',
     justifyContent: 'center',
   },

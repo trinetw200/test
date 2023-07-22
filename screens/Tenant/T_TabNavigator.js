@@ -3,22 +3,21 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons, FontAwesome5, Ionicons   } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
-import L_Home from './L_Home';
-import L_HouseManagement_Insert from './L_HouseManagement/L_HouseManagement_Insert';
-import L_HouseManagement_Update from './L_HouseManagement/L_HouseManagement_Update';
+import T_Home from './T_Home';
 
 const Tab = createBottomTabNavigator();
 
-function HouseManagementScreen() {
+function HouseSearchScreen() {
     const navigation = useNavigation();
+  
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <TouchableOpacity onPress={() => navigation.navigate('L_HouseManagement_View')}>
-          <Text>HouseManagement!</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('T_HouseSearch_View')}>
+          <Text>HouseSearch!</Text>
         </TouchableOpacity>
       </View>
     );
-}
+  }
   
   function SettingsScreen() {
     return (
@@ -28,32 +27,26 @@ function HouseManagementScreen() {
     );
   }
 
-export default function L_TabNavigator() {
+export default function T_TabNavigator() {
   return (
     <Tab.Navigator initialRouteName="Home" screenOptions={{
         headerShown: false,tabBarActiveTintColor: '#e91e63'}}>
-      <Tab.Screen name="HouseManagement" component={L_HouseManagement_View} options={{
+      <Tab.Screen name="HouseSearch" component={HouseSearchScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home-edit" size={size} color={color} />
+            <MaterialCommunityIcons name="housesearch-edit" size={size} color={color} />
           ),
         }}/>
-      <Tab.Screen name="Calendar" component={SettingsScreen} options={{
+      <Tab.Screen name="Home" component={SettingsScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
-            <FontAwesome5 name="calendar-alt" size={size} color={color} />
+            <FontAwesome5 name="home-alt" size={size} color={color} />
           ),
         }} />
-        <Tab.Screen name="Home" component={L_Home} options={{
+        <Tab.Screen name="Feedback" component={SettingsScreen} options={{
           tabBarLabel: '',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home-search" size={size} color={color}/>
-          ),
-        }} />
-        <Tab.Screen name="PaymentRecord" component={SettingsScreen} options={{
-          tabBarLabel: '',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="text-box-check-outline" size={size} color={color} />
+            <MaterialCommunityIcons name="feedback" size={size} color={color}/>
           ),
         }} />
         <Tab.Screen name="profile" component={SettingsScreen} options={{

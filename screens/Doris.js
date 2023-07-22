@@ -1,44 +1,51 @@
-import React from 'react'
-import { Text, View } from 'react-native'
-import Swiper from 'react-native-swiper'
+import React from 'react';
+import { View, FlatList, Image, Text, StyleSheet } from 'react-native';
 
-var styles = {
-  wrapper: {},
-  slide1: {
+const ImageList = () => {
+  const imageList = [
+    { id: 1, source: require('../assets/bed.png'), text: 'Image 1' },
+    { id: 2, source: require('../assets/bed.png'), text: 'Image 2' },
+    { id: 3, source: require('../assets/bed.png'), text: 'Image 3' },
+    // Add more images as needed
+  ];
+
+  const renderItem = ({ item }) => (
+    <View style={styles.itemContainer}>
+      <Image source={item.source} style={styles.image} resizeMode="cover" />
+      <Text style={styles.text}>{item.text}</Text>
+    </View>
+  );
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={imageList}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={1}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#9DD6EB'
+    backgroundColor: '#fff',
   },
-  slide2: {
-    flex: 1,
-    justifyContent: 'center',
+  itemContainer: {
     alignItems: 'center',
-    backgroundColor: '#97CAE5'
+    margin: 10,
   },
-  slide3: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#92BBD9'
+  image: {
+    width: 150,
+    height: 150,
+    marginBottom: 10,
   },
   text: {
-    color: '#fff',
-    fontSize: 30,
-    fontWeight: 'bold'
-  }
-}
+    fontSize: 16,
+    textAlign: 'center',
+  },
+});
 
-export default () => (
-  <Swiper style={styles.wrapper} showsButtons loop={false}>
-    <View testID="Hello" style={styles.slide1}>
-      <Text style={styles.text}>Hello Swiper</Text>
-    </View>
-    <View testID="Beautiful" style={styles.slide2}>
-      <Text style={styles.text}>Beautiful</Text>
-    </View>
-    <View testID="Simple" style={styles.slide3}>
-      <Text style={styles.text}>And simple</Text>
-    </View>
-  </Swiper>
-)
+export default ImageList;

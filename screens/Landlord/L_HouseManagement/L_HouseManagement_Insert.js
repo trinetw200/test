@@ -2,12 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import L_HouseManagement_Form from './L_HouseManagement_Form';
 
-const Separator = () => {
-  return <View style={styles.separator} />;
-};
-
 export default function L_HouseManagement_Insert({ navigation }) {
-
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
@@ -17,7 +12,7 @@ export default function L_HouseManagement_Insert({ navigation }) {
         <L_HouseManagement_Form></L_HouseManagement_Form>
       </View>
     </ScrollView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -25,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   title: {
     fontSize: 40,
