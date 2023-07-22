@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import { login } from '../models/LoginScreenModel';
 import { CheckBox } from '@rneui/themed';
 import { SaveUserInfo } from '../untils/UserInfo';
@@ -25,66 +25,71 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Text></Text>
-      <Text></Text>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={styles.container}>
       <Text style={styles.title}>Log in on RentEase : )</Text>
-      <Text></Text>
-      
-      <Image source={require('../assets/LOGO.jpg')} style={{width: 250, height: 200}} />
-      <Text></Text>
-      <Text></Text>
-      <View style={styles.form}>
-        <View style={styles.checkBoxContainer}>
-          <CheckBox
-            title="我是房客"
-            checked={type === 0}
-            onPress={() => setType(0)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
+        <Image
+          source={require('../assets/LOGO.jpg')}
+          style={{ width: 250, height: 200, marginBottom: 24 }}
+        />
+        <View style={styles.form}>
+          <View style={styles.checkBoxContainer}>
+            <CheckBox
+              title="我是房客"
+              checked={type === 0}
+              onPress={() => setType(0)}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+            />
+            <CheckBox
+              title="我是房東"
+              checked={type === 1}
+              onPress={() => setType(1)}
+              checkedIcon="dot-circle-o"
+              uncheckedIcon="circle-o"
+            />
+          </View>
+          <TextInput
+              style={styles.input}
+              placeholder="  帳號"
+              keyboardType="default"
+              autoCapitalize="none"
+              value={account}
+              onChangeText={(text) => setAccount(text)}
           />
-          <CheckBox
-            title="我是房東"
-            checked={type === 1}
-            onPress={() => setType(1)}
-            checkedIcon="dot-circle-o"
-            uncheckedIcon="circle-o"
+          <TextInput
+              style={styles.input}
+              placeholder="  密碼"
+              secureTextEntry={true}
+              autoCapitalize="none"
+              value={password}
+              onChangeText={(text) => setPassword(text)}
           />
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>登入</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate('RegisterScreen')}
+          >
+            <Text style={styles.buttonText}>註冊新帳戶</Text>
+          </TouchableOpacity>
         </View>
-        
-        <TextInput
-          style={styles.input}
-          placeholder="  帳號"
-          keyboardType="default"
-          autoCapitalize="none"
-          value={account}
-          onChangeText={(text) => setAccount(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="  密碼"
-          secureTextEntry={true}
-          autoCapitalize="none"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>登入</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('RegisterScreen')}>
-          <Text style={styles.buttonText}>註冊新帳戶</Text>
-        </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flexGrow: 1,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingVertical: 40,
   },
   title: {
     fontSize: 40,
@@ -92,26 +97,28 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   form: {
-    width: '60%',
+    width: '80%',
+    alignItems: 'center',
   },
   input: {
-    margin: 20,//按鈕與周圍元素之間的空間
+    width: 350,
+    height: 40,
     borderWidth: 0,
     borderColor: '#ccc',
     backgroundColor: '#E2E2E2',
     borderRadius: 100,
-    padding: 7,//按鈕內容與按鈕邊緣之間的空間。
-    marginBottom: 16,//上下間距
+    paddingHorizontal: 16,
+    marginBottom: 16,
   },
   button: {
-    margin: 20,
-    padding: 10,
-    paddingLeft: 20,
-    paddingRight: 20,
+    width: 350,
+    height: 40,
+    paddingHorizontal: 20,
     backgroundColor: '#8FAADC',
-    borderRadius: 100,//按鈕圓弧度
+    borderRadius: 100,
     alignItems: 'center',
     justifyContent: 'center',
+    marginBottom: 16,
   },
   buttonText: {
     color: '#fff',
@@ -120,7 +127,8 @@ const styles = StyleSheet.create({
   checkBoxContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     marginBottom: 16,
+    width: 350,
   },
 });

@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import L_Home from './L_Home';
 import L_HouseManagement_Insert from './L_HouseManagement/L_HouseManagement_Insert';
 import L_HouseManagement_Update from './L_HouseManagement/L_HouseManagement_Update';
+import L_HouseManagement_View from './L_HouseManagement/L_HouseManagement_View';
 
 const Tab = createBottomTabNavigator();
 

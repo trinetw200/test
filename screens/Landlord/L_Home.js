@@ -32,6 +32,7 @@ export default function L_Home({ navigation }) {
       setName(val);
     });
   }, []);
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -45,8 +46,8 @@ export default function L_Home({ navigation }) {
 
       {/* Middle Section */}
       <View style={{ marginBottom: 20 }}>
-        <Text style={{ textAlign: 'left' }}>{name} 先生 / 小姐您好：</Text>
-        <Text style={{ textAlign: 'left' }}>以下是您房屋出租的狀態。</Text>
+        <Text style={{ textAlign: 'left', fontSize: 25 }}>{name} 先生 / 小姐您好：</Text>
+        <Text style={{ textAlign: 'left', fontSize: 25 }}>以下是您房屋出租的狀態。</Text>
       </View>
 
       {/* Bottom Section */}
