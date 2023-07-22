@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, ScrollView } from 'react-native';
-import { L_HouseManagementModel } from '../../../models/L_HouseManagementModel';
+import { L_HouseManagementFormModel } from '../../../models/L_HouseManagementFormModel';
 import { CheckBox } from '@rneui/themed';
 import { GetUserName, GetUserAccount, GetUserPhone } from '../../../untils/UserInfo';
 
@@ -12,7 +12,7 @@ const Separator = () => {
 class L_HouseManagement_Form extends Component {
     constructor(props) {
         super(props);
-        this.houseModel = new L_HouseManagementModel();
+        this.houseModel = new L_HouseManagementFormModel();
         this.state = this.houseModel.houseData;
     }
 
