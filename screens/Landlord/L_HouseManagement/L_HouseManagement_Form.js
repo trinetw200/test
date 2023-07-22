@@ -31,33 +31,31 @@ class L_HouseManagement_Form extends Component {
     }
 
     handleRegister() {
-        if (this.props.id) {
+        const userInfoData = this.props.userInfoData;
+        if (this.props.houseId) {
             // 處理更新邏輯
             const successCallBack = () => {
-                // Alert.alert('', '新增成功', [
-                //     { text: '完成', onPress: () => navigation.navigate('LoginScreen') },
-                // ]);
-                Alert.alert('', '更新成功');
+                Alert.alert('', '更新成功', [
+                    { text: '完成', onPress: () => this.props.back() },
+                ]);
             }
             const failCallBack = () => {
                 Alert.alert('', '更新失敗');
             }
             this.houseModel.houseData = this.state;
-            console.log(this.houseModel.houseData);
-            this.houseModel.updateHouseData(this.account, this.props.id, successCallBack, failCallBack);
+            this.houseModel.updateHouseData(userInfoData.account, this.props.houseId, successCallBack, failCallBack);
         } else {
-            // 處理註冊邏輯
+            // 處理新增邏輯
             const successCallBack = () => {
-                // Alert.alert('', '新增成功', [
-                //     { text: '完成', onPress: () => navigation.navigate('LoginScreen') },
-                // ]);
-                Alert.alert('', '新增成功');
+                Alert.alert('', '新增成功', [
+                    { text: '完成', onPress: () => this.props.back() },
+                ]);
             }
             const failCallBack = () => {
                 Alert.alert('', '新增失敗');
             }
             this.houseModel.houseData = this.state;
-            this.houseModel.writeHouseData(this.account, successCallBack, failCallBack);
+            this.houseModel.writeHouseData(userInfoData.account, successCallBack, failCallBack);
         }
     }
 
@@ -326,7 +324,7 @@ class L_HouseManagement_Form extends Component {
                     />
                 </View>
                 <TouchableOpacity style={styles.button} onPress={() => this.handleRegister()}>
-                    <Text style={styles.buttonText}>{this.props.id ? "修改" : "新增"}</Text>
+                    <Text style={styles.buttonText}>{this.props.houseId ? "修改" : "新增"}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('LoginScreen')}>
                     <Text style={styles.buttonText}>返回</Text>

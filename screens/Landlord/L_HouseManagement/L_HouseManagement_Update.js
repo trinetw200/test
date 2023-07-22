@@ -8,13 +8,17 @@ const Separator = () => {
 
 export default function L_HouseManagement_Update({ route, navigation }) {
   const { houseId } = route.params;
+  const back = () => {
+    navigation.goBack();
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
         <Text></Text>
         <Text></Text>
         <Text style={styles.title}>更新</Text>
-        <L_HouseManagement_Form houseId={houseId}></L_HouseManagement_Form>
+        <L_HouseManagement_Form houseId={houseId} back={back}></L_HouseManagement_Form>
       </View>
     </ScrollView>
   );

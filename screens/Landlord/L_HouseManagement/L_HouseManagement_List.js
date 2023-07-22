@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, ActivityIndicator, TouchableOpacity, StyleSheet, FlatList } from 'react-native';
+import { View, Text, ActivityIndicator, Button, StyleSheet, FlatList } from 'react-native';
 import { ListItem, Image } from '@rneui/themed';
 import { L_HouseManagementListModel } from '../../../models/L_HouseManagementListModel';
 import { useSelector } from 'react-redux';
@@ -23,6 +23,14 @@ export default function L_HouseManagement_List({ navigation }) {
       }
     }, [])
   );
+
+  React.useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button onPress={() => navigation.navigate('L_HouseManagement_Insert')} title="新增" />
+      ),
+    });
+  }, [navigation]);
 
   keyExtractor = (item) => item.houseId;
 
