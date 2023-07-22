@@ -1,15 +1,15 @@
 import React from 'react';
 import L_HouseManagement_Insert from './L_HouseManagement_Insert';
 import L_HouseManagement_Update from './L_HouseManagement_Update';
-import L_HouseManagement_View from './L_HouseManagement_View';
+import L_HouseManagement_List from './L_HouseManagement_List';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
 export default function L_HouseManagement_Navigator ({ navigation }) {
   return (
-    <Stack.Navigator initialRouteName="L_HouseManagement_View">
-    <Stack.Screen name="L_HouseManagement_View" component={L_HouseManagement_View}  screenOptions={{
+    <Stack.Navigator initialRouteName="L_HouseManagement_List">
+    <Stack.Screen name="L_HouseManagement_List" component={L_HouseManagement_List}  screenOptions={{
         headerShown: false
       }}/>
     <Stack.Screen name="L_HouseManagement_Insert" component={L_HouseManagement_Insert} options={{ title: '新增' }}/>

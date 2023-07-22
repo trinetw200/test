@@ -5,7 +5,7 @@ import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import L_Home from './screens/Landlord/L_Home';
 import L_HouseManagement_Insert from './screens/Landlord/L_HouseManagement/L_HouseManagement_Insert';
-import L_HouseManagement_View from './screens/Landlord/L_HouseManagement/L_HouseManagement_View';
+import L_HouseManagement_View from './screens/Landlord/L_HouseManagement/L_HouseManagement_List';
 import ImagePickerTools from './untils/ImagePickerTools';
 import L_TabNavigator from './screens/Landlord/L_TabNavigator';
 import L_HouseManagement_Update from './screens/Landlord/L_HouseManagement/L_HouseManagement_Update';

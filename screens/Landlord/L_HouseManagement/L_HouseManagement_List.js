@@ -40,7 +40,7 @@ const list = [
   },
 ]
 
-export default function L_HouseManagement_View({ navigation }) {
+export default function L_HouseManagement_List({ navigation }) {
   keyExtractor = (item, index) => index.toString()
 
   renderItem = ({ item }) => (
