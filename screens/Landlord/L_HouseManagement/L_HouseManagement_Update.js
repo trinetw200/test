@@ -1,16 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView,Button,Alert } from 'react-native';
 import L_HouseManagement_Form from './L_HouseManagement_Form';
+import { L_HouseManagementFormModel } from '../../../models/L_HouseManagementFormModel';
 
 const Separator = () => {
   return <View style={styles.separator} />;
 };
 
 export default function L_HouseManagement_Update({ route, navigation }) {
-  const { houseId } = route.params;
+  const { houseId,account } = route.params;
   const back = () => {
     navigation.goBack();
   }
+
+  React.useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button onPress={() => {
+          const successCallBack = () => {
+            Alert.alert('', '刪除成功');
+            back();
+          }
+          const failCallBack = () => {
+            Alert.alert('', '刪除失敗');
+          }
+
+          L_HouseManagementFormModel.deleteHouseData(account,houseId, successCallBack, failCallBack);
+        }} title="刪除" />
+      ),
+    });
+  }, [navigation]);
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>

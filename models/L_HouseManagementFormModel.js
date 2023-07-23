@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set, push, get, child } from "firebase/database";
+import { getDatabase, ref, set, push, get, child, remove } from "firebase/database";
 import { firebaseConfig } from '../untils/FirebaseConfig';
 
 export class L_HouseManagementFormModel {
@@ -45,10 +45,10 @@ export class L_HouseManagementFormModel {
     });
   }
 
-  getHouseData(account, id, successCallBack) {
+  getHouseData(account, houseId, successCallBack) {
     const app = initializeApp(firebaseConfig);
     const db = ref(getDatabase(app));
-    get(child(db, 'House/' + account+'/'+id)).then((snapshot) => {
+    get(child(db, 'House/' + account+'/'+houseId)).then((snapshot) => {
       if (snapshot.exists()) {
         this.houseData = {...this.houseData,...snapshot.val()};
         successCallBack();
@@ -60,11 +60,25 @@ export class L_HouseManagementFormModel {
     });
   }
 
-  updateHouseData(account, id, successCallBack, failCallBack) {
+  updateHouseData(account, houseId, successCallBack, failCallBack) {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
-    const postListRef = ref(db, 'House/' + account +'/' +id);
+    const postListRef = ref(db, 'House/' + account +'/' +houseId);
     set(postListRef, this.houseData).then(() => {
+      // Data saved successfully!
+      successCallBack();
+    }).catch((error) => {
+      // The write failed...
+      console.error(error);
+      failCallBack();
+    });
+  }
+
+  static deleteHouseData(account, houseId, successCallBack, failCallBack){
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    const postRef = ref(db, 'House/' + account +'/' +houseId);
+    remove(postRef).then(() => {
       // Data saved successfully!
       successCallBack();
     }).catch((error) => {

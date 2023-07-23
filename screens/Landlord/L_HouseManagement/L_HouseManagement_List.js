@@ -13,9 +13,8 @@ export default function L_HouseManagement_List({ navigation }) {
   useFocusEffect(
     React.useCallback(() => {
       const model = new L_HouseManagementListModel();
-      const account = userInfoData.account;
       
-      if (account != '') {
+      if (userInfoData.account != '') {
         const successCallBack = (itemList) => {
           setItemList(itemList);
         }
@@ -35,7 +34,7 @@ export default function L_HouseManagement_List({ navigation }) {
   keyExtractor = (item) => item.houseId;
 
   renderItem = ({ item }) => (
-    <ListItem bottomDivider onPress={() => navigation.navigate('L_HouseManagement_Update',{houseId:item.houseId})}>
+    <ListItem bottomDivider onPress={() => navigation.navigate('L_HouseManagement_Update',{houseId:item.houseId,account:userInfoData.account})}>
       <Image
         source={{ uri: item.image }}
         containerStyle={styles.item}
