@@ -36,7 +36,7 @@ export default function L_Home({ navigation }) {
       {/* Top Section */}
       {/* <View style={{ flexDirection: 'row', marginBottom: 20, alignItems: 'center' }}>
         <Image source={require('../../assets/user.png')} style={{ width: 50, height: 50 }}/>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('L_HouseManagement_View')}>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('L_HouseManagement_List')}>
           <Text style={styles.buttonText}>檢視房屋</Text>
         </TouchableOpacity>
       </View> */}
